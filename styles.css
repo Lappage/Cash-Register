@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  background-image: linear-gradient(174.2deg, rgba(255, 244, 228, 1) 7.1%, rgba(240, 246, 238, 1) 67.4%);
+  cursor: default;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+button {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main img {
+  max-width: 600px;
+  margin: 0;
+  padding-top: 20px;
+}
+
+footer {
+  color: grey;
+  margin-top: auto;
+  font-size: 1.1em;
+  margin-bottom: 30px;
+}
+
+footer a {
+  color: #6d95ed;
+  text-decoration: none;
+}
+.small-screen {
+  position: absolute;
+  top: 342px;
+}
+
+.screen {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 420px;
+  font-size: 0.7em;
+}
+
+.change p,
+.change-titles p,
+#cashback p {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+#cashback {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.hidden {
+  display: none !important;
+}
+.change {
+  padding-top: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .screen {
+    top: 410px;
+  }
+  .small-screen {
+    top: 335px;
+  }
+}
+
+@media screen and (max-width: 905px) {
+  .screen {
+    top: 405px;
+  }
+  .small-screen {
+    top: 325px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .screen {
+    top: 390px;
+  }
+
+  .small-screen {
+    top: 313px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  main img {
+    max-width: 450px;
+  }
+  .screen {
+    top: 355px;
+  }
+  .screen h5 {
+    font-size: 1.3em;
+    margin: 0;
+    padding: 0;
+  }
+  .screen p {
+    font-size: 0.8em;
+  }
+  .change {
+    padding-top: 20px;
+  }
+
+  .small-screen {
+    top: 300px;
+  }
+  .small-screen h5 {
+    font-size: 0.9em;
+  }
+
+  footer p {
+    font-size: 0.7em;
+  }
+}
