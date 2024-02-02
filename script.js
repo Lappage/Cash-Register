@@ -9,16 +9,28 @@ const stupidDiv = document.getElementById("change-due");
 let currentStatus = ["STATUS", "OPEN"];
 let price = 19.5;
 let cid = [
-  ["PENNY", 1.01],
-  ["NICKEL", 2.05],
-  ["DIME", 3.1],
-  ["QUARTER", 4.25],
-  ["ONE", 90],
-  ["FIVE", 55],
-  ["TEN", 20],
-  ["TWENTY", 60],
-  ["ONE HUNDRED", 100],
+  ["PENNY", 0.01],
+  ["NICKEL", 0],
+  ["DIME", 0],
+  ["QUARTER", 0],
+  ["ONE", 1],
+  ["FIVE", 0],
+  ["TEN", 0],
+  ["TWENTY", 0],
+  ["ONE HUNDRED", 0],
 ];
+
+// let cid = [
+//   ["PENNY", 1.01],
+//   ["NICKEL", 2.05],
+//   ["DIME", 3.1],
+//   ["QUARTER", 4.25],
+//   ["ONE", 90],
+//   ["FIVE", 55],
+//   ["TEN", 20],
+//   ["TWENTY", 60],
+//   ["ONE HUNDRED", 100],
+// ];
 
 let result = [
   ["ONE HUNDRED", 0],
@@ -33,18 +45,13 @@ let result = [
 ];
 
 const displayChange = () => {
-  changeLabels.innerHTML = `<p>${currentStatus[0]}</p>`;
-  changeHTML.innerHTML = `<p>${currentStatus[1]}</p>`;
   stupidDiv.innerHTML = `<p>${currentStatus[0]}: ${currentStatus[1]}</p>`;
 
-  for (i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i++) {
     if (result[i][1] !== 0) {
-      changeLabels.innerHTML += `<p>${result[i][0]}</p>`;
-      changeHTML.innerHTML += `<p>$${result[i][1]}</p>`;
-      stupidDiv.innerHTML += `<p>${result[i][0]}: ${result[i][1]}</p>`;
+      stupidDiv.innerHTML += `<p>${result[i][0]}: $${result[i][1]}</p>`;
     }
   }
-  changeDiv.classList.remove("hidden");
 
   changeInDrawer.innerHTML = `
 <p>$${cid[0][1]}</p>
@@ -81,8 +88,8 @@ const CalculateChange = () => {
   }
 
   if (cash === price) {
-    changeHTML.innerHTML = ``;
-    changeLabels.innerHTML = `
+    stupidDiv.innerHTML = ``;
+    stupidDiv.innerHTML = `
     <h4 style="text-align: center;">No change due - customer paid with exact cash</h4>`;
     changeDiv.classList.remove("hidden");
     return;
@@ -92,10 +99,9 @@ const CalculateChange = () => {
   }
 
   if (totalCashInDraw < changeDue) {
-    changeHTML.innerHTML = ``;
-    changeLabels.innerHTML = `
-    <h4 style="text-align: center;">INSUFFICIENT FUNDS</h4>`;
-    changeDiv.classList.remove("hidden");
+    stupidDiv.innerHTML = ``;
+    stupidDiv.innerHTML = `
+    <h4 style="text-align: center;">Status: INSUFFICIENT_FUNDS</h4>`;
     return;
   }
 
@@ -103,9 +109,10 @@ const CalculateChange = () => {
     currentStatus[1] = "CLOSED";
     result = cid;
     displayChange();
+    return;
   }
 
-  for (i = 0; i < reversedCIDArray.length; i++) {
+  for (let i = 0; i < reversedCIDArray.length; i++) {
     let count = 0;
     let total = reversedCIDArray[i][1];
 
@@ -118,6 +125,13 @@ const CalculateChange = () => {
     result[i][1] = count * currencyTypes[i];
     reversedCIDArray[i][1] = parseFloat(total.toFixed(2));
   }
+
+  if (changeDue > 0) {
+    stupidDiv.innerHTML = `
+    <h4 style="text-align: center;">Status: INSUFFICIENT_FUNDS</h4>`;
+    return;
+  }
+
   cid = [...reversedCIDArray].reverse();
   displayChange();
 };
